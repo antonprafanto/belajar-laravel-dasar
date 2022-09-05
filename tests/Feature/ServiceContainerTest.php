@@ -46,7 +46,7 @@ class ServiceContainerTest extends TestCase
 
     public function testInstance(){
         $person = new Person("Anton", "Prafanto");
-        $this->app->instance(Person::class, $person)
+        $this->app->instance(Person::class, $person);
 
         $person1 = $this->app->make(Person::class);//$person
         $person2 = $this->app->make(Person::class);//$person
