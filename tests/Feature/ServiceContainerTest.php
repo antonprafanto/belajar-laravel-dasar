@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Data\Person;
 use App\Data\Foo;
 use App\Data\Bar;
+use App\Services\HelloServiceIndonesia;
 
 class ServiceContainerTest extends TestCase
 {
@@ -89,6 +90,10 @@ class ServiceContainerTest extends TestCase
         self::assertSame($bar1, $bar2);
     }
 
+    public function testHelloService(){
+        $this->app->singleton(HelloService::class, HelloServiceIndonesia::class);
 
-
+        $helloService = $this->app->make(HelloService::class);
+        self::assertEquals("Halo Anton", $helloService->hello("Anton"));
+    }
 }
