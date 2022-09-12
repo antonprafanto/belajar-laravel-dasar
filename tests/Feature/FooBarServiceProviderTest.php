@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Data\Foo;
 use App\Data\Bar;
+use App\Services\HelloServiceIndonesia;
+use App\Services\HelloService;
 
 class FooBarServiceProviderTest extends TestCase
 {
@@ -23,5 +25,12 @@ class FooBarServiceProviderTest extends TestCase
 
         self::assertSame($foo1, $bar1->foo);
         self::assertSame($foo2, $bar2->foo);
+    }
+
+    public function testPropertySingletons(){
+        $helloService1 = $this->app->make(HelloService::class);
+        $helloService2 = $this->app->make(HelloService::class);
+
+        self::assertSame($helloService1, $helloService2);
     }
 }

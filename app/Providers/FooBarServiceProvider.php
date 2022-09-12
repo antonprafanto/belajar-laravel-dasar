@@ -5,9 +5,14 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Data\Foo;
 use App\Data\Bar;
+use App\Services\HelloServiceIndonesia;
+use App\Services\HelloService;
 
 class FooBarServiceProvider extends ServiceProvider
 {
+    public array $singletons = [
+        HelloService::class => HelloServiceIndonesia::class
+    ];
     /**
      * Register services.
      *
