@@ -7,8 +7,9 @@ use App\Data\Foo;
 use App\Data\Bar;
 use App\Services\HelloServiceIndonesia;
 use App\Services\HelloService;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class FooBarServiceProvider extends ServiceProvider
+class FooBarServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
         HelloService::class => HelloServiceIndonesia::class
@@ -36,5 +37,9 @@ class FooBarServiceProvider extends ServiceProvider
     public function boot()
     {
     //
+    }
+
+    public function provides(){
+        return [HelloService::class, Foo::class, Bar::class];
     }
 }
