@@ -77,8 +77,7 @@ class ServiceContainerTest extends TestCase
         });
 
         $this->app->singleton(Bar::class, function ($app){
-            $foo = $app->make(Foo::class);
-            return new Bar($foo);
+            return new Bar($app->make(Foo::class));
         });
 
         $foo = $this->app->make(Foo::class);
